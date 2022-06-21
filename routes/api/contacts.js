@@ -2,14 +2,14 @@ const express = require('express');
 const Joi = require("joi");
 
 const contactsOperations = require("../../models/contacts");
-const createError = require("../../utils");
+const { createError } = require("../../utils");
 
 const router = express.Router()
 
 const newContactSchema = Joi.object({
   name: Joi.string().required(),
-  phone: Joi.string().required(),
-  email: Joi.string().required(),
+  phone: Joi.string().pattern(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s/0-9]*$/).required(),
+  email: Joi.string().email().required(),
 })
 
 router.get('/', async (req, res, next) => {
@@ -26,7 +26,6 @@ router.get('/:contactId', async (req, res, next) => {
     const { contactId } = req.params;
     const contact = await contactsOperations.getContactById(contactId);
     if (!contact) {
-      console.log(createError);
       throw createError(404);
     };
     res.json(contact);
