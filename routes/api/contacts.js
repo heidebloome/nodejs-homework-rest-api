@@ -1,7 +1,7 @@
 const express = require('express');
 const Joi = require("joi");
 
-const contactsOperations = require("../../models/contacts");
+const contactsOperations = require("../../services/contacts");
 const { createError } = require("../../utils");
 
 const router = express.Router()
