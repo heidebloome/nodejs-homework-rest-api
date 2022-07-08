@@ -20,14 +20,10 @@ const userSchema = Schema({
     enum: ["starter", "pro", "business"],
     default: "starter"
   },
-  // token: {
-  //   type: String,
-  //   default: null,
-  // },
-  // owner: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'user',
-  // },
+  token: {
+    type: String,
+    default: null,
+  },
 }, { versionKey: false, timestamps: true });
   
 const signupSchema = Joi.object({
@@ -35,14 +31,6 @@ const signupSchema = Joi.object({
   password: Joi.string().min(8).required(),
 
 });
-// const updateContactSchema = Joi.object({
-//   name: Joi.string(),
-//   phone: Joi.string().pattern(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s/0-9]*$/),
-//   email: Joi.string().email(),
-// })
-// const updateFavoriteSchema = Joi.object({
-//   favorite: Joi.boolean().required(),
-// });
 const schemas = {
   signupSchema
 }
